@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Anonymous class/Anonymous class.iml" filepath="$PROJECT_DIR$/Anonymous class/Anonymous class.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Bank/Bank.iml" filepath="$PROJECT_DIR$/Bank/Bank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClassInstance/ClassInstance.iml" filepath="$PROJECT_DIR$/ClassInstance/ClassInstance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Factory Pattern/Factory Pattern.iml" filepath="$PROJECT_DIR$/Factory Pattern/Factory Pattern.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaContour-1/JavaContour-1.iml" filepath="$PROJECT_DIR$/JavaContour-1/JavaContour-1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LibrarySystem/LibrarySystem.iml" filepath="$PROJECT_DIR$/LibrarySystem/LibrarySystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/THREAD/THREAD.iml" filepath="$PROJECT_DIR$/THREAD/THREAD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TicTacToe/TicTacToe.iml" filepath="$PROJECT_DIR$/TicTacToe/TicTacToe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/calculator/calculator.iml" filepath="$PROJECT_DIR$/calculator/calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/javaContour.iml" filepath="$PROJECT_DIR$/.idea/javaContour.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sorting/sorting.iml" filepath="$PROJECT_DIR$/sorting/sorting.iml" />
+    </modules>
+  </component>
+</project>
