@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Bookings - Admin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            text-align: center;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #5C258D;
+            color: white;
+            font-weight: 600;
+        }
+
+        td {
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="app-title">The Noor Residency</div>
+
+    <h2 style="text-align: center; margin-bottom: 20px; color: #333;">All Bookings</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Room</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Total Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${bookings}">
+            <td th:text="${b.id}">1</td>
+            <td th:text="${b.user != null ? b.user.username : 'N/A'}">User</td>
+            <td th:text="${b.room != null ? b.room.roomNumber : 'N/A'}">101</td>
+            <td th:text="${b.checkIn}">2025-08-01</td>
+            <td th:text="${b.checkOut}">2025-08-03</td>
+            <td th:text="${b.totalPrice}">5000</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align:center;">
+        <a class="back-btn" th:href="@{/}">⬅ Back to Dashboard</a>
+    </div>
+</div>
+
+</body>
+</html>

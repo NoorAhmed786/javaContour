@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 850px;
+            max-width: 90%;
+        }
+
+        .image-container {
+            flex: 1;
+             background: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+        }
+
+        .register-container {
+            flex: 1;
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 32px;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-size: 22px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px 3px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        a {
+            color: #5C258D;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section -->
+        <div class="image-container"></div>
+
+        <!-- Register Form -->
+        <div class="register-container">
+            <div class="app-title">The Noor Residency</div>
+            <h2>Create Your Account</h2>
+            <form th:action="@{/register}" method="post" th:object="${user}">
+                <input type="text" th:field="*{username}" placeholder="Username" required/><br/>
+                <input type="password" th:field="*{password}" placeholder="Password" required/><br/>
+                <select th:field="*{role}" required>
+                    <option th:value="CUSTOMER">Customer</option>
+                    <option th:value="ADMIN">Admin</option>
+                </select><br/>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>

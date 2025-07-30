@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Room</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 25px 35px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            height: auto;
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 26px;
+            text-align: center;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 13px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 7px 10px;
+            margin-top: 4px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 13px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            margin-top: 18px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back-link a {
+            color: #5C258D;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="app-title">The Noor Residency</div>
+    <form th:action="@{'/admin/rooms/update/' + ${room.id}}" method="post" th:object="${room}">
+        <label>Room Number:</label>
+        <input type="text" th:field="*{roomNumber}" required/>
+
+        <label>Type:</label>
+        <input type="text" th:field="*{type}" required/>
+
+        <label>Occupancy:</label>
+        <input type="number" th:field="*{occupancy}" min="1" required/>
+
+        <label>Rate per Night:</label>
+        <input type="number" step="0.01" th:field="*{ratePerNight}" required/>
+
+        <label>Discount (%):</label>
+        <input type="number" th:field="*{discount}" min="0" max="100"/>
+
+        <label>Description:</label>
+        <textarea th:field="*{description}" rows="2"></textarea>
+
+        <button type="submit">Update Room</button>
+    </form>
+
+    <div class="back-link">
+        <a th:href="@{/admin/rooms}">← Back to Room List</a>
+    </div>
+</div>
+</body>
+</html>

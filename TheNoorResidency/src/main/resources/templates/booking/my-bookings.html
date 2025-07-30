@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Bookings - The Noor Residency</title>
+    <meta charset="UTF-8"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0;
+        }
+        .bookings-container {
+            background: #fff; padding: 24px 28px; border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15); width: 640px; max-width: 92%;
+        }
+        h2 { margin: 0 0 16px; color: #333; text-align: center; }
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+        th { background: #5C258D; color: #fff; }
+        .top-actions { display: flex; gap: 10px; justify-content: center; margin: 12px 0 18px; }
+        .btn { display: inline-block; padding: 10px 14px; background: #667eea; color: #fff;
+               text-decoration: none; border-radius: 6px; }
+        .btn:hover { background: #5a67d8; }
+        .empty { text-align: center; padding: 18px; color: #555; }
+    </style>
+</head>
+<body>
+<div class="bookings-container">
+    <h2>My Bookings</h2>
+
+    <div class="top-actions">
+        <a class="btn" th:href="@{/book/search}">Book another room</a>
+        <a class="btn" th:href="@{/}">Back to the dashboard</a>
+    </div>
+
+    <!-- اگر bookings خالی ہوں -->
+    <div th:if="${#lists.isEmpty(bookings)}" class="empty">
+        No bookings yet.
+    </div>
+
+    <!-- ورنہ ٹیبل دکھائیں -->
+    <table th:if="${!#lists.isEmpty(bookings)}">
+        <thead>
+        <tr>
+            <th>Room</th>
+            <th>Check-in</th>
+            <th>Check-out</th>
+            <th>Total Price</th>
+            <th>Paid</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${bookings}">
+            <!-- room null ہو تو N/A -->
+            <td>
+                <span th:if="${b.room != null}" th:text="${b.room.roomNumber}">101</span>
+                <span th:if="${b.room == null}">N/A</span>
+            </td>
+            <td th:text="${b.checkIn}">2025-07-30</td>
+            <td th:text="${b.checkOut}">2025-08-02</td>
+            <td th:text="${b.totalPrice}">12000</td>
+            <td>
+                <span th:if="${b.paid}">Yes</span>
+                <span th:if="${!b.paid}">No</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

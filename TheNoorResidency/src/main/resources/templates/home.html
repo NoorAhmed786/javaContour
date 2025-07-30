@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Home - The Noor Residency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .home-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 360px;
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 30px;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 18px;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        a:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        .logout-link {
+            background: #e74c3c;
+            margin-top: 15px;
+        }
+
+        .logout-link:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+<div class="home-container">
+    <div class="app-title">The Noor Residency</div>
+    <h2>Welcome</h2>
+
+    <p sec:authorize="isAuthenticated()">
+        Logged in as: <b sec:authentication="name"></b>
+    </p>
+
+    <div sec:authorize="hasRole('ADMIN')">
+    <a th:href="@{/admin/rooms}">Admin Panel</a>
+    <a th:href="@{/admin/rooms/all}">View All Bookings</a>
+</div>
+
+   
+
+    <!-- Customer Section -->
+    <div sec:authorize="hasRole('CUSTOMER')">
+        <a th:href="@{/book/search}">Book a Room</a>
+        <a th:href="@{/book/my}">My Bookings</a>
+    </div>
+
+    <!-- Logout -->
+    <a class="logout-link" th:href="@{/login}">Logout</a>
+</div>
+</body>
+</html>

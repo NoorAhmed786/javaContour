@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room List | Admin Panel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            text-align: center;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .add-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .add-btn:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #5C258D;
+            color: white;
+            font-weight: 600;
+        }
+
+        td {
+            color: #333;
+        }
+
+        a.action-link {
+            color: #5C258D;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+
+        a.action-link:hover {
+            text-decoration: underline;
+        }
+
+        .logout-link {
+            display: inline-block;
+            margin-top: 30px;
+            background-color: #e11d48;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .logout-link:hover {
+            background-color: #be123c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="app-title">The Noor Residency</div>
+
+    <a class="add-btn" th:href="@{/admin/rooms/add}">➕ Add New Room</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Room #</th>
+            <th>Type</th>
+            <th>Rate</th>
+            <th>Occupancy</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="room : ${rooms}">
+            <td th:text="${room.id}">1</td>
+            <td th:text="${room.roomNumber}">101</td>
+            <td th:text="${room.type}">Deluxe</td>
+            <td th:text="${room.ratePerNight}">5000</td>
+            <td th:text="${room.occupancy}">2</td>
+            <td th:text="${room.available ? 'Available' : 'Unavailable'}">Available</td>
+            <td>
+                <a class="action-link" th:href="@{'/admin/rooms/edit/' + ${room.id}}">Edit</a> |
+                <a class="action-link" th:href="@{'/admin/rooms/delete/' + ${room.id}}">Delete</a> |
+                <a class="action-link" th:href="@{'/admin/rooms/toggle/' + ${room.id}}">Toggle</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="logout-link" th:href="@{/}">Back to the dashbord</a>
+</div>
+
+</body>
+</html>

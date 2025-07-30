@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Room - The Noor Residency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(120deg, #74ebd5, #ACB6E5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .book-container {
+            background-color: white;
+            padding: 35px 40px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            width: 420px;
+            text-align: center;
+        }
+
+        .app-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 30px;
+            color: #5C258D;
+            background: linear-gradient(90deg, #5C258D, #4389A2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 12px 0 4px 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+            margin-top: 12px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #5a67d8, #6b46c1);
+        }
+
+        .nav-links {
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: #5C258D;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .message {
+            margin-top: 14px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            color: green;
+        }
+
+        .message.error {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<div class="book-container">
+    <div class="app-title">The Noor Residency</div>
+    <h2>Book a Room</h2>
+
+    <form th:action="@{/book/confirm}" method="post" th:object="${dto}">
+        <label>Room:</label>
+        <select th:field="*{roomId}" required>
+            <option th:each="room : ${rooms}" th:value="${room.id}"
+                    th:text="${room.roomNumber + ' (' + room.type + ')'}"></option>
+        </select>
+
+        <label>Check-in:</label>
+        <input type="date" th:field="*{checkIn}" required/>
+
+        <label>Check-out:</label>
+        <input type="date" th:field="*{checkOut}" required/>
+
+        <label>Payment:</label>
+        <select th:field="*{paymentMethod}" required>
+            <option value="ACCOUNT">Account Balance</option>
+            <option value="CARD">Credit/Debit Card</option>
+        </select>
+
+        <button type="submit">Confirm Booking</button>
+    </form>
+
+    <div class="nav-links">
+        <a th:href="@{/book/my}">My Bookings</a>
+        |
+        <a th:href="@{/login}">Logout</a>
+    </div>
+
+    <div th:if="${success}" class="message success" th:text="${success}"></div>
+    <div th:if="${error}" class="message error" th:text="${error}"></div>
+</div>
+</body>
+</html>
